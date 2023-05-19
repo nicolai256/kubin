@@ -108,8 +108,25 @@ class Model_KD2:
         negative_prior_prompt=params['negative_prior_prompt'], # type: ignore
         negative_decoder_prompt=params['negative_decoder_prompt'] # type: ignore
       )
+      prompt=params['prompt']
+      num_steps=params['num_steps']
+      batch_size=params['batch_size']
+      guidance_scale=params['guidance_scale']
+      # progress=True,
+      # dynamic_threshold_v=99.5
+      # denoised_type='dynamic_threshold',
+      h=params['h']
+      w=params['w']
+      sampler=params['sampler']
+      # ddim_eta=0.05,
+      prior_cf_scale=params['prior_cf_scale']
+      prior_steps=str(params['prior_steps'])
+      negative_prior_prompt=params['negative_prior_prompt']
+      negative_decoder_prompt=params['negative_decoder_prompt']
 
-      saved_batch = save_output(self.output_dir, 'text2img', current_batch, seed)
+      saved_batch = save_output(self.output_dir, 'text2img', current_batch, seed, params['prompt'], params['negative_prior_prompt'], 
+                            params['negative_decoder_prompt'], params['num_steps'], params['batch_size'], params['guidance_scale'], 
+                            params['h'], params['w'], params['sampler'], params['prior_cf_scale'], str(params['prior_steps']))
       images = images + saved_batch
     return images
   
